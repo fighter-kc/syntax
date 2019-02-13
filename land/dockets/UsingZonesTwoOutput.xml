@@ -1,0 +1,43 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<!--This xml will be sent to OCRService.-->
+<!--The xml is case sensitive.-->
+<!--"type" attibutes determine the interpretation of "value" attributes.-->
+<!--If "type" is an exported enum, then symbolic values can be applied.-->
+<OCRJob>
+  <!--clsid: identifies "Workflow" job item type.-->
+  <!--id: the runtime identifier of this job item instance.-->
+  <!--This job item will be started immediately.-->
+  <!--"Workflow" job item executes a standard OmniPage workflow.-->
+  <!--The number of the available steps is limited.-->
+  <JobItem clsid="{14ABDDC9-0DF7-4D1C-9687-0AE5F2AD1C3D}" id="{42fe97db-1aed-4163-9c0f-723033f66be8}">
+    <!--Definition of the steps in the workflow.-->
+    <Type type="integer" value="IWFT_WFS_DIRECT|CWFF_LOADIMG| CWFF_ZONEIMG| CWFF_RECOGNIZE| CWFF_EXPORTDOC" />
+    <!--Definition of the input files.-->
+    <!--Input files are always passed in an array.-->
+    <Inputs type="array">
+      <Input type="string" value="$inputfile1$" />
+    </Inputs>
+    <!--Definition of the Workflow's parameters.-->
+    <!--Each parameter is defined with "parametername", "type" and "value".-->
+    <!--Default values are not transmitted.-->
+    <!--For available parameters see Nuance.OmniPage.CSDK.IproPlus.WFStepParameters class.-->
+    <Parameters>
+      <!--Specify Zone Template file name.-->
+      <Parameter parametername="SP_ATM_TEMPFILENAME" type="string" value="$inputfile2$" />
+    </Parameters>
+    <!--Definition of the output file.-->
+    <Output type="string" value="$outputfile1$" />
+    <!--Definition of the converter used to generate output.-->
+    <Converter value="Converters.Text.DXMLCoord" />
+    <!--This job item will NOT generate response XML!-->
+  </JobItem> 
+    <JobItem clsid="{14ABDDC9-0DF7-4D1C-9687-0AE5F2AD1C3D}" id="{4b6c2c50-a638-4425-b38b-1a35c195f596}" dependency="{42fe97db-1aed-4163-9c0f-723033f66be8}">
+    <!--Definition of the steps in the workflow.-->
+    <Type type="integer" value="IWFT_WFS_DIRECT|CWFF_EXPORTDOC" />
+    <!--Definition of the output file.-->
+    <Output type="string" value="$outputfile2$" />
+    <!--Definition of the converter used to generate output.-->
+    <Converter value="Converters.Text.Text" />
+    <!--This job item will NOT generate response XML!-->
+  </JobItem>
+</OCRJob>

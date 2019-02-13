@@ -11,15 +11,15 @@ import re
 import datetime
 import requests
 import json
-import nuance_conversion
-import extract_data_from_xml
+import utilities.nuance_conversion as nuance_conversion
+import utilities.extract_data_from_xml as extract_data_from_xml
 import time
 import shutil
-from nuance_conversion import main_process
+from utilities.nuance_conversion import main_process
 from datetime import date, timedelta
 from azure.storage.file import FileService
 from azure.storage.blob import BlockBlobService
-from rmv_duplicates import rmv_dup_process
+from utilities.rmv_duplicates import rmv_dup_process
 
 # consider writing regex "LOCATION EXCEPTION ---"\n"here--EXCEPTION TO 165:10-3-28(C)(2)(B) -"
 date_type = 0
